@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'quiet_assets'
+gem 'better_errors'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
