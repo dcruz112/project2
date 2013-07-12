@@ -15,10 +15,11 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <% if current_user.votes.where(:post_id => post.id).present? %>
-          <td id="upvote_empty"><%= link_to "v", vote, method: :delete %></td>
+        <% @current_vote = current_user.votes.where(:post_id => post.id) %>
+        <% if @current_vote.present? %>
+          <td id="upvote"><%= link_to "v", vote_path(@current_vote.first.id), method: :delete %></td>
         <% else %>
-          <td id="upvote_empty"><%= link_to "^", votes_path(vote: { post_id: post.id }), method: :post %></td>
+          <td id="upvote"><%= link_to "^", votes_path(vote: { post_id: post.id }), method: :post %></td>
         <% end %>
         <td id="net_val"><%= post.net_val %></td>
         <td><%= post.content %></td>

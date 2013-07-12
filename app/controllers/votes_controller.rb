@@ -6,13 +6,14 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.post = Post.find(@vote.post_id)
+    @vote.user = current_user
     @vote.post.net_val += 1
+    @vote.user.save
     @vote.post.save
     respond_to do |format|
       if @vote.save
         format.html { redirect_to :back }
-        # format.js
-        format.json { render action: 'show', status: :created, location: @vote }
+        # format.js}
       else
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
@@ -28,7 +29,7 @@ class VotesController < ApplicationController
     @vote.post.save
     @vote.destroy
     respond_to do |format|
-      format.html { redirect_to votes_url }
+      format.html { redirect_to :back }
       # format.js
       format.json { head :no_content }
     end
