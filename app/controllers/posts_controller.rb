@@ -78,7 +78,7 @@ class PostsController < ApplicationController
 
   def undo_upvote
     @post = Post.find(params[:id])
-    @post.net_val = @post.net_val - 1
+    @post.net_val -= 1
         respond_to do |format|
       if @post.save
         format.html { redirect_to :back }

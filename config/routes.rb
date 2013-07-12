@@ -1,9 +1,12 @@
 Project2::Application.routes.draw do
+  resources :votes
+
   resources :users
   resources :posts
 
+  post 'votes/:id' => 'votes#create', as: :create_vote
   get 'posts/upvote/:id' => 'posts#upvote', as: :upvote
-  get 'posts/undo_upvote/:id' => 'posts#upvote', as: :undo_upvote
+  get 'posts/undo_upvote/:id' => 'posts#undo_upvote', as: :undo_upvote
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
