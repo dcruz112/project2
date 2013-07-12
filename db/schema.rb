@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20130712151527) do
     t.integer  "class_year"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "net_val"
   end
 
   create_table "votes", force: true do |t|
