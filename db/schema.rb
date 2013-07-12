@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 20130711201829) do
     t.integer  "class_year"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "net_val"
   end
 
 end

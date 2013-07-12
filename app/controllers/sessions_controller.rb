@@ -3,16 +3,19 @@ class SessionsController < ApplicationController
   def log_in
     RubyCAS::Filter
     current_user
-    if params[:return_to_controller] && params[:return_to_action]
-      redirect_to controller: params[:return_to_controller], action: params[:return_to_action]
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path
   end
 
   def log_out
     @current_user = nil
     session[:cas_user] = nil
-    redirect_to root_path
+    RubyCAS::Filter.logout(self, root_path)
   end
+
+  def current_user(redirect=true)
+    @user = User.where(netid: session[:cas_user]).first
+    redirect && !params[:delete]
+    redirect_to new_user_path and return
+  end
+
 end
