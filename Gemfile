@@ -40,7 +40,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-<<<<<<< HEAD
+
 #Use nifty generators
 gem 'nifty-generators', "~> 0.4.6"
 
@@ -50,7 +50,7 @@ group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
 end
->>>>>>> eea273a8653fadadce8337df149affcece435ba0
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
