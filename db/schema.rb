@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -92,4 +91,3 @@ ActiveRecord::Schema.define(version: 20130712151527) do
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end
->>>>>>> eea273a8653fadadce8337df149affcece435ba0
