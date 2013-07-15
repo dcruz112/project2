@@ -27,6 +27,11 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.10)
+    better_errors (0.9.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     coderay (1.0.9)
     coffee-rails (4.0.0)
@@ -36,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -52,7 +58,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+<<<<<<< HEAD
     metaclass (0.0.1)
+=======
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.5)
@@ -61,15 +70,23 @@ GEM
     multi_json (1.7.7)
     nifty-generators (0.4.6)
     polyglot (0.3.3)
+<<<<<<< HEAD
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+=======
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
     pry (0.9.12.2-x86-mingw32)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
       win32console (~> 1.3)
+<<<<<<< HEAD
+=======
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -90,6 +107,14 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+<<<<<<< HEAD
+=======
+    rubycas-client (2.2.1)
+      activesupport
+    rubycas-client-rails (0.1.0)
+      rails (>= 3.0.0)
+      rubycas-client (>= 2.2.0)
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
     sass (3.2.9)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -98,6 +123,10 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+<<<<<<< HEAD
+=======
+    simple_form (1.4.1)
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
     slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -133,15 +162,25 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+<<<<<<< HEAD
   mocha
   nifty-generators (~> 0.4.6)
   pry
+=======
+  pry
+  quiet_assets
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
   rails (= 4.0.0)
+  rubycas-client (= 2.2.1)
+  rubycas-client-rails
   sass-rails (~> 4.0.0)
   sdoc
+  simple_form
   sqlite3
   therubyracer
   turbolinks

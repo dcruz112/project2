@@ -1,18 +1,30 @@
 Project2::Application.routes.draw do
+<<<<<<< HEAD
   resources :surveys
+=======
+  resources :votes
+
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
   resources :users
+  resources :posts
+
+  post 'votes/:id' => 'votes#create', as: :create_vote
+  get 'posts/upvote/:id' => 'posts#upvote', as: :upvote
+  get 'posts/undo_upvote/:id' => 'posts#undo_upvote', as: :undo_upvote
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get '/log_in' => 'sessions#log_in', as: :log_in
+  get '/log_out' => 'sessions#log_out', as: :log_out
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

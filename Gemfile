@@ -3,6 +3,14 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+#authentication
+gem 'rubycas-client-rails'
+gem 'rubycas-client', '2.2.1'
+
+# simple forms
+gem 'simple_form'
+
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -32,12 +40,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+<<<<<<< HEAD
 #Use nifty generators
 gem 'nifty-generators', "~> 0.4.6"
 
-group :development do 
-gem 'pry'
-end 
+group :development do
+	gem 'quiet_assets'
+	gem 'pry'
+	gem 'better_errors'
+	gem 'binding_of_caller'
+end
+>>>>>>> eea273a8653fadadce8337df149affcece435ba0
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
