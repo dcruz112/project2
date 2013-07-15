@@ -1,10 +1,6 @@
 Project2::Application.routes.draw do
-<<<<<<< HEAD
   resources :surveys
-=======
   resources :votes
-
->>>>>>> eea273a8653fadadce8337df149affcece435ba0
   resources :users
   resources :posts
 
