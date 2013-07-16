@@ -1,3 +1,44 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post {
+	font-family: Georgia;
+	margin: 10px;
+	padding: 5px;
+	border-radius: 5px;
+
+	-o-transition:.1s;
+  -ms-transition:.1s;
+  -moz-transition:.1s;
+  -webkit-transition:.1s;
+  transition:.1s;
+
+	.left-col {
+		margin-right: 10px;
+		float: left;
+		text-align: center;
+	}
+
+	.content{
+		font-size: 20px;
+		margin-bottom: 2px;
+	}
+
+	.footer {
+	  visibility: hidden;
+	  word-spacing: 5px;
+	}
+}
+
+.post:hover {
+  background: LightGray;
+  
+  .footer {
+	  visibility: visible;
+	}
+}
+
+a {
+	text-decoration: none;
+}

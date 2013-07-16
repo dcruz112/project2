@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -19,17 +21,22 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find(params[:id])
+    if current_user.id != @post.user_id
+      redirect_to "http://www.youtube.com/watch?v=6FOUqQt3Kg0"
+    end
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     @post.net_val = 0
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to root_path }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -43,7 +50,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to root_path }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -55,6 +62,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @post = Post.find(params[:id])
+    if current_user.id != @post.user_id
+      redirect_to "http://www.youtube.com/watch?v=6FOUqQt3Kg0"
+    end
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url }
@@ -62,33 +73,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def upvote
-    @post = Post.find(params[:id])
-    @post.net_val += 1
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to :back }
-        format.js
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def undo_upvote
-    @post = Post.find(params[:id])
-    @post.net_val -= 1
-        respond_to do |format|
-      if @post.save
-        format.html { redirect_to :back }
-        format.js
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -98,6 +82,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :user_id)
     end
 end

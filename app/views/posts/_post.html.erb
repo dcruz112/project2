@@ -1,0 +1,31 @@
+<% @current_vote = current_user.votes.where(post_id: post.id) %>
+<% @current_flag = current_user.flags.where(post_id: post.id) %>
+
+<div class="post">
+	<div class="left-col">
+	  <div class="upvote">
+	  	<% if @current_vote.present? %>
+		  	<%= link_to "v", vote_path(@current_vote.first.id), method: :delete %>
+		  <% else %>
+			  <%= link_to "^", votes_path(vote: { post_id: post.id, 
+			  	user_id: current_user.id }), method: :post %>
+			<% end %>
+	  </div>
+		<div class="net_val"><%= post.net_val %></div>
+	</div>
+	<div class="right-col">
+		<div class="content"><%= link_to post.content, post %></div>
+		<div class="footer">
+			<% if current_user.id == post.user_id %>
+				<%= link_to 'Edit', edit_post_path(post) %>  
+				<%= link_to 'Delete', post, method: :delete,
+				 data: { confirm: 'Are you sure?' } %>
+			<% elsif @current_flag.present? %>
+				<%= link_to "q", flag_path(@current_flag.first.id), method: :delete %>
+			<% else %>
+			  <%= link_to "p", flags_path(flag: { post_id: post.id, 
+			  	user_id: current_user.id }), method: :post %>
+			<% end %>
+		</div>
+	</div>
+</div>

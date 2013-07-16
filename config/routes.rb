@@ -1,4 +1,10 @@
 Project2::Application.routes.draw do
+
+  resources :comments
+
+  root to: 'posts#index'
+
+  resources :flags
   resources :surveys
   resources :votes
   resources :users

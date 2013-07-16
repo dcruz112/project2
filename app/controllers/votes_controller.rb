@@ -5,15 +5,19 @@ class VotesController < ApplicationController
   # POST /votes.json
   def create
     @vote = Vote.new(vote_params)
+
+    if current_user.votes.where(post_id: @vote.post_id).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
     @vote.post = Post.find(@vote.post_id)
-    @vote.user = current_user
     @vote.post.net_val += 1
-    @vote.user.save
     @vote.post.save
+
     respond_to do |format|
       if @vote.save
         format.html { redirect_to :back }
-        # format.js}
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
@@ -43,6 +47,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:user_id, :post_id, :up)
+      params.require(:vote).permit(:user_id, :post_id)
     end
 end
