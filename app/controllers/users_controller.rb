@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # skip_before_action RubyCAS::Filter, only: [:index]
-  # skip_before_action :current_user, only: [:index]
+  skip_before_action RubyCAS::Filter, only: [:index]
+  skip_before_action :current_user, only: [:index, :new, :create]
 
   # GET /users
   # GET /users.json
@@ -15,12 +15,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      render "NO!"
+      render text: "NO!"
     end
   end
 
   # GET /users/new
   def new
+    if current_user(false) 
+      render text: "Nooooope"
+    end
     @user = User.new
   end
 
@@ -28,7 +31,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      render "NO!"
+      render text: "NO!"
     end
   end
 
@@ -36,10 +39,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.netid = session[:cas_user]
+    @user.search_ldap(@user.netid)
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -66,14 +71,22 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    if @user.id == current_user.id 
+    if @user.id == current_user.id || !current_user.student
+      @delete_objects = []
+      @delete_objects += Vote.where(user_id: @user.id)
+      @delete_objects += Flag.where(user_id: @user.id)
+      @delete_objects += Post.where(user_id: @user.id)
+      @delete_objects += Comment.where(user_id: @user.id)
+      @delete_objects.each do |obj|
+        obj.destroy
+      end
       @user.destroy
       respond_to do |format|
-        format.html { redirect_to users_url }
+        format.html { redirect_to root_path }
         format.json { head :no_content }
       end
     else
-      render "Silly hacker!"
+      render text: "Silly hacker!"
     end
   end
 

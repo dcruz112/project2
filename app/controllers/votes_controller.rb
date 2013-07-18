@@ -6,13 +6,9 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
 
-    if current_user.votes.where(post_id: @vote.post_id).present?
+    if current_user.votes.where(post_id: @vote.post_id, comment_id: @vote.comment_id).present?
       redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
     end
-
-    @vote.post = Post.find(@vote.post_id)
-    @vote.post.net_val += 1
-    @vote.post.save
 
     respond_to do |format|
       if @vote.save
@@ -29,8 +25,6 @@ class VotesController < ApplicationController
   # DELETE /votes/1
   # DELETE /votes/1.json
   def destroy
-    @vote.post.net_val -= 1
-    @vote.post.save
     @vote.destroy
     respond_to do |format|
       format.html { redirect_to :back }
@@ -47,6 +41,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:user_id, :post_id)
+      params.require(:vote).permit(:user_id, :post_id, :comment_id)
     end
 end

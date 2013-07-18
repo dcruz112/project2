@@ -48,10 +48,21 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
+    @comment = Comment.find(params[:id])
+    if @comment.user_id == current_user.id || !current_user.student
+      @delete_objects = []
+      @delete_objects += Vote.where(comment_id: @comment.id)
+      @delete_objects += Flag.where(comment_id: @comment.id)
+      @delete_objects.each do |obj|
+        obj.destroy
+      end
+      @post.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { head :no_content }
+      end
+    else
+      render text: "Silly hacker!"
     end
   end
 

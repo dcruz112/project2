@@ -3,4 +3,7 @@ class Post < ActiveRecord::Base
 	has_many :votes
 	has_many :flags
 	has_many :comments
+
+	validates :content, presence: true
+
 end

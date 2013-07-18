@@ -63,13 +63,21 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    if current_user.id != @post.user_id
-      redirect_to "http://www.youtube.com/watch?v=6FOUqQt3Kg0"
-    end
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+    if @post.user_id == current_user.id || !current_user.student
+      @delete_objects = []
+      @delete_objects += Vote.where(post_id: @post.id)
+      @delete_objects += Flag.where(post_id: @post.id)
+      @delete_objects += Comment.where(post_id: @post.id)
+      @delete_objects.each do |obj|
+        obj.destroy
+      end
+      @post.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { head :no_content }
+      end
+    else
+      render text: "Silly hacker!"
     end
   end
 
@@ -82,6 +90,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id)
+      params.require(:post).permit(:content, :user_id, :name)
     end
 end

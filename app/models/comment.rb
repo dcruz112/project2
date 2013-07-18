@@ -3,4 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
   has_many :votes
   has_many :flags
+
+  validates :content, presence: true
+  
 end

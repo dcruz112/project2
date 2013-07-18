@@ -1,5 +1,11 @@
-<h1>Project 2</h1><br>
-
-<%= render @posts.reverse %>
-
-<%= link_to 'Ask a question!', new_post_path %>
+<div class="all-posts">
+	<% @posts = Post.all %>
+	<% @posts.reverse.each do |p| %>
+		<% @current_flags = current_user.flags.where(post_id: p) %>
+		<%= render p unless @current_flags.present? %>
+	<% end %>
+</div>
+<div class="form">
+	<% @post = Post.new %>
+	<%= render 'form' %>
+</div>

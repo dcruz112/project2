@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h2><%= @post.content %></h2>
-<%= render '/comments/form' %>
-<% @comments_list = Comment.where(post_id: @post.id) %>
-<%= render @comments_list %>
-
 <% if current_user.id == @post.user_id %>
 	<%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 <%= link_to 'Back', posts_path %>
+<%= render '/comments/form' %>
+<% Comment.where(post_id: @post.id).each do |c| %>
+	<% @current_flags = current_user.flags.where(comment_id: c) %>
+	<%= render c unless @current_flags.present? %>
+<% end %>

@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.post {
+.writing {
 	font-family: Georgia;
 	margin: 10px;
-	padding: 5px;
-	border-radius: 5px;
+	padding: 10px;
+	border-radius: 7px;
 
 	-o-transition:.1s;
   -ms-transition:.1s;
@@ -22,7 +22,16 @@
 
 	.content{
 		font-size: 20px;
-		margin-bottom: 2px;
+		margin-bottom: 5px;
+		line-height: 1.1em;
+		word-spacing: 0.04em;
+	}
+
+	.byline {
+		visibility: hidden;
+		font-size: 10px;
+		display: block;
+		margin-bottom: 5px;
 	}
 
 	.footer {
@@ -31,8 +40,12 @@
 	}
 }
 
-.post:hover {
+.writing:hover {
   background: LightGray;
+
+  .byline {
+  	visibility: visible;
+  }
   
   .footer {
 	  visibility: visible;

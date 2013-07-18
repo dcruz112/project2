@@ -12,6 +12,33 @@
  *= require_tree .
  */
 
+.user_info  {
+	float: right;
+	display: block;
+}
+
+.icon img {
+	width: 22px;
+	height: 22px;
+}
+
+.all-posts {
+	width: 65%;
+	height: 475px;
+	overflow-y: auto;
+	margin-bottom: 15px;
+}
+
+.form {
+	position: fixed;
+}
+
+.form-content {
+	width: 500px;
+	height:60px;
+	border-radius: 7px;
+}
+
 a:link {
 	color:black;
 	text-decoration:none;

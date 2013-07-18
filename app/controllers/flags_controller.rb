@@ -6,7 +6,7 @@ class FlagsController < ApplicationController
   def create
     @flag = Flag.new(flag_params)
 
-    if current_user.flags.where(post_id: post_id).present?
+    if current_user.flags.where(post_id: @flag.post_id).present?
       redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
     end
 
@@ -39,6 +39,6 @@ class FlagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flag_params
-      params.require(:flag).permit(:user_id, :post_id)
+      params.require(:flag).permit(:user_id, :post_id, :comment_id)
     end
 end

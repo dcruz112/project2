@@ -8,8 +8,9 @@ gem 'rubycas-client-rails'
 gem 'rubycas-client', '2.2.1'
 
 # simple forms
-gem 'simple_form'
+gem 'simple_form', '3.0.0.rc'
 
+gem 'net-ldap'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

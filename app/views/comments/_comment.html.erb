@@ -1,13 +1,39 @@
+<% @current_vote = current_user.votes.where(comment_id: comment.id) %>
 
-
-<div class="comment">
+<div class="writing">
+	<div class="left-col">
+	  <div class="upvote">
+	  	<% if @current_vote.present? %>
+		  	<%= link_to "v", vote_path(@current_vote.first.id), method: :delete %>
+		  <% else %>
+			  <%= link_to "^", votes_path(vote: { comment_id: comment.id, 
+			  	user_id: current_user.id }), method: :post %>
+			<% end %>
+	  </div>
+		<div class="net_val"><%= comment.votes.length %></div>
+	</div>
 	<div class="right-col">
 		<div class="content"><%= comment.content %></div>
+		<div class="byline">
+			<% if !comment.user.student %>
+				<%= "Written by Professor #{comment.user.last_name}" %>
+			<% elsif comment.name %>
+				<%= "Written by #{comment.user.full_name}" %>
+			<% else %>
+				<%= "Written anonymously" %>
+			<% end %>
+		</div>
 		<div class="footer">
 			<% if current_user.id == comment.user_id %>
 				<%= link_to 'Edit', edit_comment_path(comment) %>  
 				<%= link_to 'Delete', comment, method: :delete,
 				 data: { confirm: 'Are you sure?' } %>
+			<% elsif !current_user.student %>
+				<%= link_to 'X', post, method: :delete,
+				 data: { confirm: 'Are you sure?' } %>
+			<% else %>
+			  <%= link_to "p", flags_path(flag: { comment_id: comment.id, 
+			  	user_id: current_user.id }), method: :post %>
 			<% end %>
 		</div>
 	</div>

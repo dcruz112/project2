@@ -1,5 +1,4 @@
-<h1>New user</h1>
+<h1>Who are you?</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', users_path %>
+<%= link_to "Student", users_path(user: { student: true } ), method: :post %>
+<%= link_to "Teacher", users_path(user: { student: false } ), method: :post %>
