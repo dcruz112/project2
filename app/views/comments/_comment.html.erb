@@ -4,10 +4,10 @@
 	<div class="left-col">
 	  <div class="upvote">
 	  	<% if @current_vote.present? %>
-		  	<%= link_to "v", vote_path(@current_vote.first.id), method: :delete %>
+		  	<%= link_to image_tag("unvote.png"), unvote_post_path(comment), 
+		  	method: :delete, remote: true, class: "icon" %>
 		  <% else %>
-			  <%= link_to "^", votes_path(vote: { comment_id: comment.id, 
-			  	user_id: current_user.id }), method: :post %>
+			  <%= link_to image_tag("vote.png"), upvote_post_path(comment), method: :put, remote: true, class: "icon" %>
 			<% end %>
 	  </div>
 		<div class="net_val"><%= comment.votes.length %></div>
@@ -25,15 +25,15 @@
 		</div>
 		<div class="footer">
 			<% if current_user.id == comment.user_id %>
-				<%= link_to 'Edit', edit_comment_path(comment) %>  
-				<%= link_to 'Delete', comment, method: :delete,
-				 data: { confirm: 'Are you sure?' } %>
+				<%= link_to image_tag("edit.png"), edit_comment_path(comment), class: 'icon' %>  
+				<%= link_to image_tag("delete.png"), comment, method: :delete,
+				 data: { confirm: 'Are you sure?' }, class: 'icon' %>
 			<% elsif !current_user.student %>
-				<%= link_to 'X', post, method: :delete,
-				 data: { confirm: 'Are you sure?' } %>
+				<%= link_to image_tag("delete.png"), post, method: :delete,
+				 data: { confirm: 'Are you sure?' }, class: 'icon' %>
 			<% else %>
-			  <%= link_to "p", flags_path(flag: { comment_id: comment.id, 
-			  	user_id: current_user.id }), method: :post %>
+			  <%= link_to image_tag("flag.png"), flags_path(flag: { comment_id: comment.id, 
+			  	user_id: current_user.id }), method: :post, class: 'icon' %>
 			<% end %>
 		</div>
 	</div>

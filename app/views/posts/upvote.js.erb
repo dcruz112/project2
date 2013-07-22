@@ -1,3 +1,7 @@
-$('#upvote_empty').find('a').text('v')
-$('#upvote_empty').find('a').attr("href", "/posts/undo_upvote/<%= @post.id %>")
-$('#net_val').text(<%= @post.net_val.to_s %>)
+$('.upvote').find('a img').attr({
+    src: '/assets/unvote.png',
+    alt: 'Unvote'
+});
+$('.upvote').find('a').attr('data-method', 'delete');
+$('.upvote').find('a').attr('href', 'posts/<%= @post.id %>/unvote');
+$('.net_val').text('<%= @post.votes.length %>');

@@ -4,11 +4,10 @@
 	<div class="left-col">
 	  <div class="upvote">
 	  	<% if @current_vote.present? %>
-		  	<%= link_to image_tag("unvote.png"), vote_path(@current_vote.first.id), 
-		  	method: :delete, class: "icon" %>
+		  	<%= link_to image_tag("unvote.png"), unvote_post_path(post), 
+		  	method: :delete, remote: true, class: "icon" %>
 		  <% else %>
-			  <%= link_to image_tag("vote.png"), votes_path(vote: { post_id: post.id, 
-			  	user_id: current_user.id }), method: :post, class: "icon" %>
+			  <%= link_to image_tag("vote.png"), upvote_post_path(post), method: :put, remote: true, class: "icon" %>
 			<% end %>
 	  </div>
 		<div class="net_val"><%= post.votes.length %></div>

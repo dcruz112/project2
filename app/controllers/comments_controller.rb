@@ -56,13 +56,41 @@ class CommentsController < ApplicationController
       @delete_objects.each do |obj|
         obj.destroy
       end
-      @post.destroy
+      @comment.destroy
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.json { head :no_content }
       end
     else
       render text: "Silly hacker!"
+    end
+  end
+
+  def upvote
+    @vote = @comment.votes.build(user: current_user)
+    
+    if current_user.votes.where(comment_id: @comment.id).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
+    respond_to do |format|
+      if @vote.save
+        format.html { redirect_to :back }
+        format.js
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+      end
+    end  
+  end
+
+  def unvote
+    @vote = Vote.where(comment_id: params[:id])
+    @vote.destroy_all
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+      format.json { head :no_content }
     end
   end
 

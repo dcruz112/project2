@@ -1,8 +1,8 @@
 <%= simple_form_for @comment do |f| %>
 
-    <%= f.input :content %>
-    <%= f.check_box :name, {}, "true", "false" %>
+    <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: '' %>
+    <%= f.check_box :name, {}, "true", "false" %> Show name<br>
     <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.submit 'Comment' %>
+    <%= image_submit_tag 'comment.png', alt: 'save', class: 'icon' %>
 
 <% end %>

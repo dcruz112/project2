@@ -1,34 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Student:</strong>
-  <%= @user.student %>
-</p>
-
-<p>
-  <strong>Netid:</strong>
-  <%= @user.netid %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Class year:</strong>
-  <%= @user.class_year %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to image_tag('back.png'), root_path, class: 'icon' %>

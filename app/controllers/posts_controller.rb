@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
 
   # GET /posts
   # GET /posts.json
@@ -81,6 +81,33 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @vote = @post.votes.build(user: current_user)
+    
+    if current_user.votes.where(post_id: @post.id).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
+    respond_to do |format|
+      if @vote.save
+        format.html { redirect_to :back }
+        format.js
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+      end
+    end  
+  end
+
+  def unvote
+    @vote = Vote.where(post_id: params[:id])
+    @vote.destroy_all
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+      format.json { head :no_content }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

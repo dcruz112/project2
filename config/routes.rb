@@ -1,18 +1,25 @@
 Project2::Application.routes.draw do
 
-  resources :comments
+  post "panic/create"
+  delete "panic/delete"
+  resources :comments do
+    member do
+      put 'upvote'
+      delete 'unvote'
+    end
+  end
 
   root to: 'posts#index'
 
   resources :flags
   resources :surveys
-  resources :votes
   resources :users
-  resources :posts
-
-  post 'votes/:id' => 'votes#create', as: :create_vote
-  get 'posts/upvote/:id' => 'posts#upvote', as: :upvote
-  get 'posts/undo_upvote/:id' => 'posts#undo_upvote', as: :undo_upvote
+  resources :posts do
+    member do
+      put 'upvote'
+      delete 'unvote'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

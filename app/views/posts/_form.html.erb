@@ -1,5 +1,7 @@
 <%= simple_form_for @post do |f| %>
-    <%= f.input :content, input_html: { maxlength: 160, class: 'form-content' }, label: ''  %>
-    <%= f.check_box :name, {}, "true", "false" %> Use my name<br>
-    <%= f.submit 'Ask!' %>
+
+  <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: ''  %>
+  <%= f.check_box :name, {}, "true", "false" %> Show name<br>
+  <%= image_submit_tag 'question.png', alt: 'save', class: 'icon', remote: true %>
+
 <% end %>
