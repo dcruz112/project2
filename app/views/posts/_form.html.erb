@@ -2,6 +2,6 @@
 
   <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: ''  %>
   <%= f.input :name, as: :boolean, label: "Use Name" %>
-  <%= image_submit_tag 'question.png', alt: 'save', class: 'icon', remote: true %>
+  <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'icon', remote: true %>
 
 <% end %>

@@ -1,8 +1,12 @@
 Project2::Application.routes.draw do
 
-  resources :confusions
+  root to: 'posts#index'
 
-  resources :lectures
+  resources :lectures do
+    member do
+      put 'confusion'
+    end
+  end
 
   resources :comments do
     member do
@@ -11,15 +15,14 @@ Project2::Application.routes.draw do
     end
   end
 
-  root to: 'posts#index'
-
-  resources :flags
   resources :surveys
   resources :users
   resources :posts do
     member do
       put 'upvote'
       delete 'unvote'
+      put 'flag'
+      delete 'unflag'
     end
   end
 

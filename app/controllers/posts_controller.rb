@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :unvote, :flag]
 
   # GET /posts
   # GET /posts.json
@@ -105,6 +105,24 @@ class PostsController < ApplicationController
       format.html { redirect_to :back }
       format.js
       format.json { head :no_content }
+    end
+  end
+
+  def flag
+    @flag = @post.flags.build(user: current_user)
+
+    if current_user.flags.where(post_id: @flag.post_id).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
+    respond_to do |format|
+      if @flag.save
+        format.html { redirect_to :back }
+        format.json { render action: 'show', status: :created, location: @flag }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @flag.errors, status: :unprocessable_entity }
+      end
     end
   end
 
