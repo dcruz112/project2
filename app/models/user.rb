@@ -19,10 +19,9 @@ class User < ActiveRecord::Base
 	             "mail", "collegename", "curriculumshortname", "college", "class"]
 	    result = ldap.search(base: "ou=People,o=yale.edu", filter: filter, attributes: attrs)
 		if !result.empty?
-			fname  = result[0][:givenname][0]
-			self.first_name = fname
-			self.last_name   = result[0][:sn][0]
-	    	@nickname = result[0][:eduPersonNickname]
+			self.first_name = result[0][:givenname][0]
+			self.last_name  = result[0][:sn][0]
+	    @nickname = result[0][:eduPersonNickname]
 			if !@nickname.empty?
 			    self.first_name  = @nickname[0]
 			end

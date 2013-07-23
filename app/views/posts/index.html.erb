@@ -10,7 +10,7 @@
 	<%= render 'form' %>
 </div>
 <div class="button">
-	<% if Lecture.last.current %>
+	<% if !Lecture.last.nil? && Lecture.last.current %>
 		<%= link_to image_tag("button.png"), confusions_path, method: :post %>
 	<% else %>
 		"No lecture started"
