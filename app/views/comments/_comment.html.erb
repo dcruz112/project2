@@ -1,13 +1,13 @@
 <% @current_vote = current_user.votes.where(comment_id: comment.id) %>
 
-<div class="writing">
+<div class="writing" id="<%= dom_id(comment) %>">
 	<div class="left-col">
 	  <div class="upvote">
 	  	<% if @current_vote.present? %>
-		  	<%= link_to image_tag("unvote.png"), unvote_post_path(comment), 
+		  	<%= link_to image_tag("unvote.png"), unvote_comment_path(comment), 
 		  	method: :delete, remote: true, class: "icon" %>
 		  <% else %>
-			  <%= link_to image_tag("vote.png"), upvote_post_path(comment), method: :put, remote: true, class: "icon" %>
+			  <%= link_to image_tag("vote.png"), upvote_comment_path(comment), method: :put, remote: true, class: "icon" %>
 			<% end %>
 	  </div>
 		<div class="net_val"><%= comment.votes.length %></div>

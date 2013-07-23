@@ -1,6 +1,6 @@
 <% @current_vote = current_user.votes.where(post_id: post.id) %>
 
-<div class="writing">
+<div class="writing" id="<%= dom_id(post) %>">
 	<div class="left-col">
 	  <div class="upvote">
 	  	<% if @current_vote.present? %>
@@ -15,7 +15,9 @@
 	<div class="right-col">
 		<div class="content"><%= link_to post.content, post %></div>
 		<div class="byline">
-			<% if post.name %>
+			<% if !post.user.student %>
+				<%= "Asked by Professor #{post.user.last_name}" %>
+			<% elsif post.name %>
 				<%= "Asked by #{post.user.full_name}" %>
 			<% else %>
 				<%= "Asked anonymously" %>

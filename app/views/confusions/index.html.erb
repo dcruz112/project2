@@ -1,0 +1,25 @@
+<h1>Listing confusions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @confusions.each do |confusion| %>
+      <tr>
+        <td><%= link_to 'Show', confusion %></td>
+        <td><%= link_to 'Edit', edit_confusion_path(confusion) %></td>
+        <td><%= link_to 'Destroy', confusion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Confusion', new_confusion_path %>

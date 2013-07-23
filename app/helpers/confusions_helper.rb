@@ -1,0 +1,2 @@
+module ConfusionsHelper
+end

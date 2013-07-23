@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @post.content %></h2>
+<h2 class="title"><%= @post.content %></h2>
 <% if current_user.id == @post.user_id %>
 	<%= link_to image_tag("edit.png"), edit_post_path(@post), class: "icon" %>
 <% end %>
 <%= link_to image_tag("back.png"), posts_path, class: "icon" %>
+<em class="byline"><%= @post.name ? @post.user.full_name : "Anonymous" %></em>
 <%= render '/comments/form' %>
 <% Comment.where(post_id: @post.id).each do |c| %>
 	<% @current_flags = current_user.flags.where(comment_id: c) %>

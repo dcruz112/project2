@@ -1,0 +1,17 @@
+<%= form_for(@confusion) do |f| %>
+  <% if @confusion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@confusion.errors.count, "error") %> prohibited this confusion from being saved:</h2>
+
+      <ul>
+      <% @confusion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
