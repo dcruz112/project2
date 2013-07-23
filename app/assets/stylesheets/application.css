@@ -47,7 +47,6 @@
 }
 
  .all-posts {
-   width: 65%;
    height: 525px;
    border-radius: 7px;
    overflow-y: auto;
