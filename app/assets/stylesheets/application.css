@@ -46,6 +46,14 @@
 	font-family: Georgia;
 }
 
+ .all-posts {
+   width: 65%;
+   height: 525px;
+   border-radius: 7px;
+   overflow-y: auto;
+   margin-bottom: 15px;
+ }
+
 ul {
 	padding: 0;
 }
