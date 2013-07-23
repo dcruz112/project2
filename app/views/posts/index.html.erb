@@ -1,14 +1,18 @@
 <div class="all-posts">
-	<% @posts = Post.all %>
-	<% @posts.reverse.each do |p| %>
-		<% @current_flags = current_user.flags.where(post_id: p) %>
-		<%= render p unless @current_flags.present? %>
-	<% end %>
+	<ul>
+		<% @posts = Post.all %>
+		<% @posts.reverse.each do |p| %>
+			<% @current_flags = current_user.flags.where(post_id: p) %>
+			<%= render p unless @current_flags.present? %>
+		<% end %>
+	</ul>
 </div>
+
 <div class="form">
 	<% @post = Post.new %>
 	<%= render 'form' %>
 </div>
+
 <div class="button">
 	<% if !Lecture.last.nil? && Lecture.last.current %>
 		<%= link_to image_tag("button.png"), confusions_path, method: :post %>
@@ -16,3 +20,5 @@
 		"No lecture started"
 	<% end %>
 </div>
+
+<%= subscribe_to "/posts/new" %>

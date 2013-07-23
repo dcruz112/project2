@@ -33,16 +33,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     @post.net_val = 0
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to root_path }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    @post.save
+    # respond_to do |format|
+    # #   #if @post.save
+    #     format.html { render 'create' }
+    #     format.js
+      #   format.html { render action: 'new' }
+      #   format.json { render json: @post.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   # PATCH/PUT /posts/1
@@ -83,7 +82,7 @@ class PostsController < ApplicationController
 
   def upvote
     @vote = @post.votes.build(user: current_user)
-    
+
     if current_user.votes.where(post_id: @post.id).present?
       redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
     end
@@ -96,7 +95,7 @@ class PostsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
-    end  
+    end
   end
 
   def unvote

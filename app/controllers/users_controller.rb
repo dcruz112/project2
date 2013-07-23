@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    if current_user(false) 
+    if current_user(false)
       render text: "Nooooope"
     end
     @user = User.new

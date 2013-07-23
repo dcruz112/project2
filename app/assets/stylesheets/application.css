@@ -22,23 +22,20 @@
 	height: 22px;
 }
 
-.all-posts {
-	width: 65%;
-	height: 525px;
-	overflow-y: auto;
-	margin-bottom: 15px;
-}
-
 .icon {
 	width: 25px;
 	height: 25px;
 }
 
 .form {
-	position: absolute;
+	position: relative;
 	width: 65%;
 	bottom: 0;
 	margin: 15px;
+
+	.right-col {
+		float: left;
+	}
 }
 
 .form-content {
@@ -47,6 +44,10 @@
 	border-radius: 7px;
 	float: left;
 	font-family: Georgia;
+}
+
+ul {
+	padding: 0;
 }
 
 .button {

@@ -52,6 +52,9 @@ group :development do
 	gem 'binding_of_caller'
 end
 
+# real-time updating/ fetching from websockets w/ thin server
+gem 'private_pub'
+gem 'thin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
