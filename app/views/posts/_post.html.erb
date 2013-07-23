@@ -3,8 +3,8 @@
 <div class="writing">
 	<div class="left-col">
 	  <div class="upvote">
-	  	<% if @current_vote.present? %>
-		  	<%= link_to image_tag("unvote.png"), unvote_post_path(post), 
+	  	<% if current_user.votes.where(:post_id => post.id, :up => true).present? %>
+		  	<%= link_to image_tag("unvote.png"), unvote_post_path(post),
 		  	method: :delete, remote: true, class: "icon" %>
 		  <% else %>
 			  <%= link_to image_tag("vote.png"), upvote_post_path(post), method: :put, remote: true, class: "icon" %>
@@ -24,14 +24,14 @@
 	</div>
 	<div class="footer">
 			<% if current_user.id == post.user_id %>
-				<%= link_to image_tag("edit.png"), edit_post_path(post), class: "icon" %>  
+				<%= link_to image_tag("edit.png"), edit_post_path(post), class: "icon" %>
 				<%= link_to image_tag("delete.png"), post, method: :delete,
 				 data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% elsif !current_user.student %>
 				<%= link_to image_tag("delete.png"), post, method: :delete,
 				 data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% else %>
-			  <%= link_to image_tag("flag.png"), flags_path(flag: { post_id: post.id, 
+			  <%= link_to image_tag("flag.png"), flags_path(flag: { post_id: post.id,
 			  	user_id: current_user.id }), method: :post, data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% end %>
 		</div>

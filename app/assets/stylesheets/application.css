@@ -22,12 +22,18 @@
 	height: 22px;
 }
 
-.all-posts {
+.all-posts-box {
 	width: 65%;
-	height: 525px;
+	height: 300px;
 	border-radius: 7px;
-	overflow-y: auto;
 	margin-bottom: 15px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: black;
+	max-height: 90%;
+	overflow: auto;
+	overflow-x: hidden;
+	float: left;
 }
 
 .icon {
@@ -36,14 +42,14 @@
 }
 
 .form {
-	position: absolute;
+	position: relative;
 	width: 65%;
 	bottom: 0;
 	margin: 15px;
 
 	.right-col {
 		float: left;
-	}	
+	}
 }
 
 .form-content {

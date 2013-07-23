@@ -1,1 +1,6 @@
-alert("lol");
+<% publish_to "/posts/new" do %>
+  $(".all-posts-box").append("<%= j render(@post) %>");
+  $(".all-posts-box").animate({ scrollTop: $(".all-posts-box").get(0).scrollHeight}, 100);
+<% end %>
+
+$(".post_content")[0].reset();
