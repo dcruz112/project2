@@ -1,0 +1,7 @@
+$('#<%= dom_id(@comment) %>').find('.upvote a img').attr({
+    src: '/assets/vote.png',
+    alt: 'Vote'
+});
+$('#<%= dom_id(@comment) %>').find('.upvote a').attr('data-method', 'put');
+$('#<%= dom_id(@comment) %>').find('.upvote a').attr('href', 'posts/<%= @comment.id %>/upvote');
+$('#<%= dom_id(@comment) %>').find('.net_val').text('<%= @comment.votes.length %>');

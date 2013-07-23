@@ -57,6 +57,13 @@
 	height:60px;
 	border-radius: 7px;
 	float: left;
+	font-family: Georgia;
+}
+
+.button {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 a:link {

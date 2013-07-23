@@ -1,7 +1,7 @@
-$('.upvote').find('a img').attr({
+$('#<%= dom_id(@post) %>').find('.upvote a img').attr({
     src: '/assets/vote.png',
     alt: 'Vote'
 });
-$('.upvote').find('a').attr('data-method', 'put');
-$('.upvote').find('a').attr('href', 'posts/<%= @post.id %>/upvote');
-$('.net_val').text('<%= @post.votes.length %>');
+$('#<%= dom_id(@post) %>').find('.upvote a').attr('data-method', 'put');
+$('#<%= dom_id(@post) %>').find('.upvote a').attr('href', 'posts/<%= @post.id %>/upvote');
+$('#<%= dom_id(@post) %>').find('.net_val').text('<%= @post.votes.length %>');

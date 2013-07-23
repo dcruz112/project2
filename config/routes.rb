@@ -1,7 +1,9 @@
 Project2::Application.routes.draw do
 
-  post "panic/create"
-  delete "panic/delete"
+  resources :confusions
+
+  resources :lectures
+
   resources :comments do
     member do
       put 'upvote'

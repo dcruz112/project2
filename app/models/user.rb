@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 	has_many :votes
 	has_many :flags
 	has_many :comment
+	has_many :lectures
+	has_many :confusions
 
 	def full_name
 		first_name + " " + last_name
