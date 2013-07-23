@@ -29,7 +29,6 @@
 
 .form {
 	position: relative;
-	width: 65%;
 	bottom: 0;
 	margin: 15px;
 
@@ -51,6 +50,7 @@
    height: 525px;
    border-radius: 7px;
    overflow-y: auto;
+
    margin-bottom: 15px;
  }
 

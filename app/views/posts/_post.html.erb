@@ -3,7 +3,7 @@
 <div class="writing" id="<%= dom_id(post) %>">
 	<div class="left-col">
 	  <div class="upvote">
-	  	<% if current_user.votes.where(:post_id => post.id, :up => true).present? %>
+	  	<% if @current_vote.present? %>
 		  	<%= link_to image_tag("unvote.png"), unvote_post_path(post),
 		  	method: :delete, remote: true, class: "icon" %>
 		  <% else %>
@@ -15,13 +15,15 @@
 	<div class="right-col">
 		<div class="content"><%= link_to post.content, post %></div>
 		<div class="byline">
+			Asked 
 			<% if !post.user.student %>
-				<%= "Asked by Professor #{post.user.last_name}" %>
+				<%= "by Professor #{post.user.last_name}" %>
 			<% elsif post.name %>
-				<%= "Asked by #{post.user.full_name}" %>
+				<%= "by #{post.user.full_name}" %>
 			<% else %>
-				<%= "Asked anonymously" %>
+				<%= "anonymously" %>
 			<% end %>
+			, <%= distance_of_time_in_words_to_now(post.created_at, include_seconds = true) %> ago
 		</div>
 	</div>
 	<div class="footer">

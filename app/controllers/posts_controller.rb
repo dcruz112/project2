@@ -99,8 +99,8 @@ class PostsController < ApplicationController
   end
 
   def unvote
-    @vote = Vote.where(post_id: params[:id])
-    @vote.destroy_all
+    @vote = current_user.votes.where(post: @post).first
+    @vote.destroy
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
