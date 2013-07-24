@@ -1,5 +1,5 @@
 class LecturesController < ApplicationController
-  before_action :set_lecture, only: [:show, :edit, :update, :destroy]
+  before_action :set_lecture, only: [:show, :edit, :update, :destroy, :confusion]
 
   # GET /lectures
   # GET /lectures.json
@@ -54,6 +54,32 @@ class LecturesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to lectures_url }
       format.json { head :no_content }
+    end
+  end
+
+  def confusion
+    bound = 5
+    latest_confusion = Confusion.where(user: current_user, lecture: @lecture).last
+    if @lecture.current
+      if latest_confusion.nil? || (Time.now - latest_confusion.created_at) >= (bound * 60)
+        @confusion = Confusion.new
+        @confusion.user = current_user
+        @confusion.lecture = @lecture
+
+        respond_to do |format|
+          if @confusion.save
+            format.html { redirect_to :back}
+            format.json { render action: 'show', status: :created, location: @confusion }
+          else
+            format.html { render action: 'new' }
+            format.json { render json: @confusion.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        redirect_to :back
+      end
+    else
+      redirect_to :back
     end
   end
 

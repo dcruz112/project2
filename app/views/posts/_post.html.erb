@@ -1,27 +1,32 @@
 <% @current_vote = current_user.votes.where(post_id: post.id) %>
 
 <div class="writing" id="<%= dom_id(post) %>">
+	<table><tr>
 	<div class="left-col">
-	  <div class="upvote">
-	  	<% if current_user.votes.where(:post_id => post.id, :up => true).present? %>
-		  	<%= link_to image_tag("unvote.png", :title => "Unvote"), unvote_post_path(post),
-		  	method: :delete, remote: true, class: "icon" %>
-		  <% else %>
-			  <%= link_to image_tag("vote.png", :title => "Upvote"), upvote_post_path(post), method: :put, remote: true, class: "icon" %>
+		<div class="upvote">
+		  	<% if @current_vote.present? %>
+				<%= link_to image_tag("unvote.png"), unvote_post_path(post),
+			  	method: :delete, remote: true, class: "icon" %>
+			<% else %>
+				<%= link_to image_tag("vote.png", :title => "Upvote"), upvote_post_path(post), method: :put, remote: true, class: "icon" %>
 			<% end %>
-	  </div>
+		</div>
 		<div class="net_val"><%= post.votes.length %></div>
 	</div>
+	</tr>
+	<tr><td>
 	<div class="right-col">
 		<div class="content"><%= link_to post.content, post %></div>
 		<div class="byline">
+			Asked
 			<% if !post.user.student %>
-				<%= "Asked by Professor #{post.user.last_name}" %>
+				<%= "by Professor #{post.user.last_name}" %>
 			<% elsif post.name %>
-				<%= "Asked by #{post.user.full_name}" %>
+				<%= "by #{post.user.full_name}" %>
 			<% else %>
-				<%= "Asked anonymously" %>
+				<%= "anonymously" %>
 			<% end %>
+			, <%= distance_of_time_in_words_to_now(post.created_at, include_seconds = true) %> ago
 		</div>
 	</div>
 	<div class="footer">
@@ -33,8 +38,9 @@
 				<%= link_to image_tag("delete.png", :title => "Delete"), post, method: :delete,
 				 data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% else %>
-			  <%= link_to image_tag("flag.png", :title => "Flag"), flags_path(flag: { post_id: post.id,
-			  	user_id: current_user.id }), method: :post, data: { confirm: 'Are you sure?' }, class: "icon" %>
+			  <%= link_to image_tag("flag.png", :title => "Flag"), flag_post_path(post),
+			  method: :put, data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% end %>
-		</div>
+	</div>
+	</td></tr></table>
 </div>
