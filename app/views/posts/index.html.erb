@@ -21,4 +21,11 @@
 	<% end %>
 </div>
 
+<div class="confusion-meter">
+	<% @confusion = Confusion.new %>
+	<ul><%= render @confusion %></ul>
+</div>
+
+
 <%= subscribe_to "/posts/new" %>
+<%#= subscribe_to "/confusions/new" %>

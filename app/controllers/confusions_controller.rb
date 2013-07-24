@@ -12,15 +12,17 @@ class ConfusionsController < ApplicationController
         @confusion.user = current_user
         @confusion.lecture = Lecture.last
 
-        respond_to do |format|
-          if @confusion.save
-            format.html { redirect_to :back}
-            format.json { render action: 'show', status: :created, location: @confusion }
-          else
-            format.html { render action: 'new' }
-            format.json { render json: @confusion.errors, status: :unprocessable_entity }
-          end
-        end
+        @confusion.save
+        PrivatePub.publish_to("/confusions/new", "alert('fly fools!')")
+        # respond_to do |format|
+        #   if @confusion.save
+        #     format.html { redirect_to :back}
+        #     format.json { render action: 'show', status: :created, location: @confusion }
+        #   else
+        #     format.html { render action: 'new' }
+        #     format.json { render json: @confusion.errors, status: :unprocessable_entity }
+        #   end
+        # end
       else
         redirect_to :back
       end

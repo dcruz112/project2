@@ -1,0 +1,10 @@
+<% publish_to "/confusions/new" do %>
+  $(".confusion-meter").prepend("<%= j render(@post) %>");
+  alert ('boop');
+<% end %>
+
+$(".form-content").val(null)
+
+// <% publish_to "/posts/new" do %>
+//   $(".all-posts").prepend("<%= j render(@confusion) %>");
+// <% end %>

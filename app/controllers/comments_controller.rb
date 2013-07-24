@@ -68,7 +68,7 @@ class CommentsController < ApplicationController
 
   def upvote
     @vote = @comment.votes.build(user: current_user)
-    
+
     if current_user.votes.where(comment_id: @comment.id).present?
       redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
     end
@@ -81,7 +81,7 @@ class CommentsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
-    end  
+    end
   end
 
   def unvote

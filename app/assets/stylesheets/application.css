@@ -47,10 +47,11 @@
 }
 
  .all-posts {
-   height: 525px;
+   height: 300px;
    border-radius: 7px;
    overflow-y: auto;
    margin-bottom: 15px;
+   width: 65%;
  }
 
 ul {
