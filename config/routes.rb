@@ -1,10 +1,12 @@
 Project2::Application.routes.draw do
 
-  root to: 'posts#index'
+  root to: 'lectures#index'
 
   resources :lectures do
     member do
       put 'confusion'
+      patch 'end'
+      post 'join'
     end
   end
 

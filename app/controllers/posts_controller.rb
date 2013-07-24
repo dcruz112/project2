@@ -32,7 +32,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.net_val = 0
     @post.save
     # respond_to do |format|
     # #   #if @post.save
@@ -72,7 +71,7 @@ class PostsController < ApplicationController
       end
       @post.destroy
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.json { head :no_content }
       end
     else
@@ -134,6 +133,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id, :name)
+      params.require(:post).permit(:content, :user_id, :name, :lecture_id)
     end
 end

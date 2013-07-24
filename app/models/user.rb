@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 	has_many :confusions
 	has_and_belongs_to_many :lectures
 
+	scope :teachers, -> { where(student: false) }
+	scope :students, -> { where(student: true) }
+
 	def full_name
 		first_name + " " + last_name
 	end
