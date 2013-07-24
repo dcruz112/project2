@@ -30,7 +30,7 @@
 .form {
 	position: relative;
 	bottom: 0;
-	margin: 15px;
+	margin: 10px;
 
 	.right-col {
 		float: left;
@@ -38,19 +38,23 @@
 }
 
 .form-content {
-	width: 500px;
+	width: 75%;
 	height:60px;
 	border-radius: 7px;
 	float: left;
 	font-family: Georgia;
+	font-size: 14px;
 }
 
 .all-posts {
- 	width: 65%;
-  height: 525px;
+  width: 75%;
+  height: 425px;
   border-radius: 7px;
   overflow-y: auto;
   margin-bottom: 15px;
+  margin: 10px;
+  /*border: 1px solid black;*/
+  background-image: url('notepad.png');
 }
 
 ul {

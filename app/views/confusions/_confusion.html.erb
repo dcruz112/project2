@@ -1,0 +1,4 @@
+<%= simple_form_for @confusion, remote: true do |f| %>
+	<%= f.input :user_id, as: :hidden, input_html: {value: user.id} %>
+	<%= f.submit "Confused!" %>
+<% end %>
