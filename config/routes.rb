@@ -12,6 +12,7 @@ Project2::Application.routes.draw do
     member do
       put 'upvote'
       delete 'unvote'
+      put 'flag'
     end
   end
 
@@ -22,7 +23,6 @@ Project2::Application.routes.draw do
       put 'upvote'
       delete 'unvote'
       put 'flag'
-      delete 'unflag'
     end
   end
 
