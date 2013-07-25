@@ -1,11 +1,9 @@
 <div class="all-posts">
-	<ul>
 		<% @posts = Post.all %>
 		<% @posts.reverse.each do |p| %>
 			<% @current_flags = current_user.flags.where(post_id: p) %>
 			<%= render p unless @current_flags.present? %>
 		<% end %>
-	</ul>
 </div>
 
 <div class="form">
@@ -15,10 +13,20 @@
 
 <div class="button">
 	<% if !Lecture.last.nil? && Lecture.last.current %>
-		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusions_path, method: :post %>
+		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put %>
 	<% else %>
 		"No lecture started"
 	<% end %>
 </div>
 
+<div class="confusion-meter">
+	<%#= render partial: @confusions %>
+</div>
+
+<%#= simple_form_for @confusion, remote: true do |f| %>
+	<%#= f.input :user_id, as: :hidden, input_html: {value: user.id} %>
+	<%#= f.submit "Confused!" %>
+<%# end %>
+
 <%= subscribe_to "/posts/new" %>
+<%#= subscribe_to "/confusions/new" %>

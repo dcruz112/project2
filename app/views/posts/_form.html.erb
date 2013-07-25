@@ -1,7 +1,10 @@
 <%= simple_form_for @post, remote: true do |f| %>
 
   <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: ''  %>
-  <%= f.input :name, as: :boolean, label: "Use Name" %>
+  <% if current_user.student %>
+  	<%= f.input :name, as: :boolean, label: "Use Name" %>
+  <% end %>
+  <%= f.input :lecture_id, as: :hidden, input_html: {value: lecture.id} %>
   <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'icon', remote: true %>
 
 <% end %>

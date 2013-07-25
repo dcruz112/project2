@@ -1,25 +1,30 @@
 Project2::Application.routes.draw do
 
-  resources :confusions
+  root to: 'lectures#index'
 
-  resources :lectures
+  resources :lectures do
+    member do
+      put 'confusion'
+      patch 'end'
+      post 'join'
+    end
+  end
 
   resources :comments do
     member do
       put 'upvote'
       delete 'unvote'
+      put 'flag'
     end
   end
 
-  root to: 'posts#index'
-
-  resources :flags
   resources :surveys
   resources :users
   resources :posts do
     member do
       put 'upvote'
       delete 'unvote'
+      put 'flag'
     end
   end
 

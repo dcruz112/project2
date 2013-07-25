@@ -1,5 +1,11 @@
 <% publish_to "/posts/new" do %>
   $(".all-posts").prepend("<%= j render(@post) %>");
+  $(".all-posts").animate({ scrollTop: $(".all-posts").scrollHeight}, 100);
 <% end %>
 
 $(".form-content").val(null)
+
+<% publish_to "/confusions/new" do %>
+  $(".confusion-meter").prepend("<%= j render(@post) %>");
+  alert ('boop');
+<% end %>

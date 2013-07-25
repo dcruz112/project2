@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722203546) do
+ActiveRecord::Schema.define(version: 20130724191533) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -51,24 +51,25 @@ ActiveRecord::Schema.define(version: 20130722203546) do
   add_index "flags", ["user_id"], name: "index_flags_on_user_id"
 
   create_table "lectures", force: true do |t|
-    t.integer  "users_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "end_time"
     t.boolean  "current"
-    t.integer  "user_id"
+    t.string   "name"
   end
 
-  add_index "lectures", ["users_id"], name: "index_lectures_on_users_id"
+  create_table "lectures_users", force: true do |t|
+    t.integer "lecture_id"
+    t.integer "user_id"
+  end
 
   create_table "posts", force: true do |t|
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "net_val"
     t.integer  "user_id"
-    t.boolean  "anon"
     t.boolean  "name"
+    t.integer  "lecture_id"
   end
 
   create_table "questions", force: true do |t|
@@ -98,7 +99,6 @@ ActiveRecord::Schema.define(version: 20130722203546) do
   create_table "votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.boolean  "up"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comment_id"

@@ -5,8 +5,11 @@ class User < ActiveRecord::Base
 	has_many :votes
 	has_many :flags
 	has_many :comment
-	has_many :lectures
 	has_many :confusions
+	has_and_belongs_to_many :lectures
+
+	scope :teachers, -> { where(student: false) }
+	scope :students, -> { where(student: true) }
 
 	def full_name
 		first_name + " " + last_name

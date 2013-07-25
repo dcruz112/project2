@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :unvote, :flag]
 
   # GET /posts
   # GET /posts.json
@@ -32,7 +32,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.net_val = 0
     @post.save
     # respond_to do |format|
     # #   #if @post.save
@@ -72,7 +71,7 @@ class PostsController < ApplicationController
       end
       @post.destroy
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.json { head :no_content }
       end
     else
@@ -99,12 +98,30 @@ class PostsController < ApplicationController
   end
 
   def unvote
-    @vote = Vote.where(post_id: params[:id])
-    @vote.destroy_all
+    @vote = current_user.votes.where(post: @post).first
+    @vote.destroy
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
       format.json { head :no_content }
+    end
+  end
+
+  def flag
+    @flag = @post.flags.build(user: current_user)
+
+    if current_user.flags.where(post_id: @flag.post_id).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
+    respond_to do |format|
+      if @flag.save
+        format.html { redirect_to :back }
+        format.json { render action: 'show', status: :created, location: @flag }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @flag.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -116,6 +133,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id, :name)
+      params.require(:post).permit(:content, :user_id, :name, :lecture_id)
     end
 end

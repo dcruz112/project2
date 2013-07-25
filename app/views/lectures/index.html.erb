@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <th>Name</th>
+      <th>Date</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,10 +14,23 @@
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
-        <td><%= lecture.user %></td>
-        <td><%= link_to 'Show', lecture %></td>
-        <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
-        <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to lecture.name, lecture %></td>
+        <td><%= lecture.created_at.strftime("%m/%d/%y") %></td>
+        <% if !current_user.student %>
+          <td><%= link_to image_tag("edit.png"), edit_lecture_path(lecture), 
+          class: "icon" %></td>
+          <td><%= link_to image_tag("delete.png"), lecture, method: :delete, 
+          data: { confirm: 'Are you sure?' }, class: "icon" %></td>
+        <% end %>
+        <td>
+          <% if lecture.current %>
+            <% if !current_user.student && lecture.users.include?(current_user) %>
+              <%= link_to "End", end_lecture_path(lecture), method: :patch %>
+            <% elsif !lecture.users.include?(current_user) %>
+              <%= link_to "Join", join_lecture_path(lecture), method: :post %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +38,6 @@
 
 <br>
 
-<%= link_to 'New Lecture', new_lecture_path %>
+<% if !current_user.student && (Lecture.last.nil? || !Lecture.last.current) %>
+   <%= link_to "Start Lecture", lectures_path, method: :post %>
+<% end %>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :unvote]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :unvote, :flag]
 
   # GET /comments/1
   # GET /comments/1.json
@@ -68,7 +68,7 @@ class CommentsController < ApplicationController
 
   def upvote
     @vote = @comment.votes.build(user: current_user)
-    
+
     if current_user.votes.where(comment_id: @comment.id).present?
       redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
     end
@@ -81,7 +81,7 @@ class CommentsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
-    end  
+    end
   end
 
   def unvote
@@ -91,6 +91,24 @@ class CommentsController < ApplicationController
       format.html { redirect_to :back }
       format.js
       format.json { head :no_content }
+    end
+  end
+
+  def flag
+    @flag = @comment.flags.build(user: current_user)
+
+    if current_user.flags.where(comment: @flag.comment).present?
+      redirect_to "http://www.youtube.com/watch?v=eBpYgpF1bqQ"
+    end
+
+    respond_to do |format|
+      if @flag.save
+        format.html { redirect_to :back }
+        format.json { render action: 'show', status: :created, location: @flag }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @flag.errors, status: :unprocessable_entity }
+      end
     end
   end
 

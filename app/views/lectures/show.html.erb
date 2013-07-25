@@ -1,9 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="all-posts" style="<%= "height = 650px;" unless @lecture.current %>">
+	<ul>
+		<% @posts = Post.where(lecture: @lecture) %>
+		<% @posts.reverse.each do |p| %>
+			<% @current_flags = current_user.flags.where(post_id: p) %>
+			<%= render p unless @current_flags.present? %>
+		<% end %>
+	</ul>
+</div>
 
-<p>
-  <strong>Users:</strong>
-  <%= @lecture.user %>
-</p>
+<% if @lecture.current %>
+	<div class="form">
+		<%= render partial: 'posts/form', locals: {lecture: @lecture} %>
+	</div>
+<% end %>
 
-<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
-<%= link_to 'Back', lectures_path %>
+<div class="button">
+	<% if !Lecture.last.nil? && Lecture.last.current %>
+		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put %>
+	<% else %>
+		"No lecture started"
+	<% end %>
+</div>
+
+<%= subscribe_to "/posts/new" %>
