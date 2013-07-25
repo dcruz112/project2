@@ -8,8 +8,10 @@
 	<%= link_to image_tag("back.png", :title => "Back"), posts_path, class: "icon" %>
 	<em class="byline"><%= @post.name ? @post.user.full_name : "Anonymous" %></em>
 	<%= render '/comments/form' %>
-	<% Comment.where(post_id: @post.id).each do |c| %>
-		<% @current_flags = current_user.flags.where(comment_id: c) %>
-		<%= render c unless @current_flags.present? %>
-	<% end %>
+	<div class="all-comments">
+		<% Comment.where(post_id: @post.id).each do |c| %>
+			<% @current_flags = current_user.flags.where(comment_id: c) %>
+			<%= render c unless @current_flags.present? %>
+		<% end %>
+	</div>
 </div>
