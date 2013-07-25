@@ -1,4 +1,4 @@
-<h1>Listing lectures</h1>
+<h2>Listing lectures</h2>
 
 <table>
   <thead>
@@ -27,7 +27,7 @@
             <% if !current_user.student && lecture.users.include?(current_user) %>
               <%= link_to "End", end_lecture_path(lecture), method: :patch %>
             <% elsif !lecture.users.include?(current_user) %>
-              <%= link_to "Join", join_lecture_path(lecture), method: :post %>
+              <%= link_to "Join", join_lecture_path(lecture), method: :post, class: "btn" %>
             <% end %>
           <% end %>
         </td>
@@ -39,5 +39,5 @@
 <br>
 
 <% if !current_user.student && (Lecture.last.nil? || !Lecture.last.current) %>
-   <%= link_to "Start Lecture", lectures_path, method: :post %>
+   <%= link_to "Start New Lecture", lectures_path, method: :post, class: "btn" %>
 <% end %>
