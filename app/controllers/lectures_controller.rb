@@ -78,6 +78,7 @@ class LecturesController < ApplicationController
         respond_to do |format|
           if @confusion.save
             format.html { redirect_to :back}
+            format.js
             format.json { render action: 'show', status: :created, location: @confusion }
           else
             format.html { render action: 'new' }
@@ -93,7 +94,6 @@ class LecturesController < ApplicationController
   end
 
   def end
-    
     respond_to do |format|
       if @lecture.update(current: false, end_time: Time.now)
         format.html { redirect_to lectures_url }
@@ -108,7 +108,6 @@ class LecturesController < ApplicationController
   def join
 
     @lecture.users << current_user
-    
     respond_to do |format|
       if @lecture.save
         format.html { redirect_to lecture_url(@lecture) }

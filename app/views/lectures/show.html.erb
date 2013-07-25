@@ -1,3 +1,7 @@
+<div class="lecture-name">
+	<%= @lecture.created_at %>
+</div>
+
 <div class="all-posts" style="<%= "height = 650px;" unless @lecture.current %>">
 	<ul>
 		<% @posts = Post.where(lecture: @lecture) %>
@@ -12,14 +16,18 @@
 	<div class="form">
 		<%= render partial: 'posts/form', locals: {lecture: @lecture} %>
 	</div>
+<% else %>
+	Lecture has ended. No peanut-throwing.
 <% end %>
 
 <div class="button">
 	<% if !Lecture.last.nil? && Lecture.last.current %>
-		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put %>
+		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put, remote: true %>
 	<% else %>
 		"No lecture started"
 	<% end %>
 </div>
 
+
 <%= subscribe_to "/posts/new" %>
+<%= subscribe_to "/confusions/new" %>

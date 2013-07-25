@@ -17,9 +17,9 @@
         <td><%= link_to lecture.name, lecture %></td>
         <td><%= lecture.created_at.strftime("%m/%d/%y") %></td>
         <% if !current_user.student %>
-          <td><%= link_to image_tag("edit.png"), edit_lecture_path(lecture), 
+          <td><%= link_to image_tag("edit.png"), edit_lecture_path(lecture),
           class: "icon" %></td>
-          <td><%= link_to image_tag("delete.png"), lecture, method: :delete, 
+          <td><%= link_to image_tag("delete.png"), lecture, method: :delete,
           data: { confirm: 'Are you sure?' }, class: "icon" %></td>
         <% end %>
         <td>

@@ -57,6 +57,12 @@
   background-image: url('notepad.png');
 }
 
+.lecture-name {
+	margin-left: 10px;
+	font-size: 30px;
+	font-family: Georgia;
+}
+
 ul {
 	padding: 0;
 }
