@@ -1,5 +1,5 @@
-<%- model_class = Survey -%>
-<div class="page-header">
-  <h2><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h2>
-</div>
-<%= render :partial => 'form' %>
+<h1>New Survey</h1>
+
+<%= render 'form' %>
+
+<p><%= link_to "Back to List", surveys_path %></p>
