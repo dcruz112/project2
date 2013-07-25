@@ -1,5 +1,4 @@
-<%- model_class = User -%>
-<div class="page-header">
-  <h2><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h2>
-</div>
-<%= render :partial => 'form' %>
+<h1>Who are you?</h1>
+
+<%= link_to "Student", users_path(user: { student: true} ), method: :post %>
+<%= link_to "Teacher", users_path(user: { student: false} ), method: :post %>

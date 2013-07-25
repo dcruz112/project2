@@ -10,7 +10,7 @@
 
 <% if @lecture.current %>
 	<div class="form">
-		<%= render partial: 'posts/form', locals: {lecture: @lecture} %>
+		<%= render partial: 'posts/form', locals: {lecture_id: @lecture.id} %>
 	</div>
 <% end %>
 

@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if current_user(false) %>
 	<div class = "navbar navbar-fixed-top">
     <div class = "navbar-inner" >
       <div class = "container" >
@@ -17,22 +18,13 @@
         </a>
         <a class = "logo">pNut</a>
             <ul class = "nav">
-              <li><%= link_to "Question", posts_path%></li>
-              <li><%= link_to "#{current_user.first_name}", user_path(current_user) %></li>
+              <li><%= link_to "Lectures", lectures_path%></li>
+              <li><%= link_to "You", user_path(current_user) %>
               <li><%= link_to "Logout", log_out_path %></li>
             </ul>
       </div>
     </div>
   </div>
-  <% if current_user(false) %>
-    <% if !current_user.student %>
-      <% @lecture = Lecture.where(user_id: current_user.id).last %>
-      <% if @lecture.nil? || !@lecture.current %>
-        <%= link_to "Start Lecture", lectures_path, method: :post, class: "btn" %>
-      <% else %>
-        <%= link_to "End Lecture", lecture_path(@lecture), method: :patch, class: "btn" %>
-      <% end %>
-    <% end %>
   <% end %>
 <%= yield %>
 
