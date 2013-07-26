@@ -25,6 +25,7 @@
 <% end %>
 
 <%= subscribe_to "/posts/new" %>
+
 <% if !current_user.student %>
 	<%= subscribe_to "/confusions/new" %>
 <% end %>

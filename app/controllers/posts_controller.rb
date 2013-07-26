@@ -32,15 +32,15 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.save
-    # respond_to do |format|
-    # #   #if @post.save
-    #     format.html { render 'create' }
-    #     format.js
-      #   format.html { render action: 'new' }
-      #   format.json { render json: @post.errors, status: :unprocessable_entity }
-      # end
-    # end
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to :back }
+        format.js
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /posts/1

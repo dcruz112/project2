@@ -1,6 +1,6 @@
 <% publish_to "/posts/new" do %>
+  //alert("lol");
   $(".all-posts").prepend("<%= j render(@post) %>");
-  $(".all-posts").animate({ scrollTop: $(".all-posts").scrollHeight}, 100);
 <% end %>
 
-$(".form-content").val(null)
+$(".form-content").val(null);

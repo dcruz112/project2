@@ -73,3 +73,8 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+input.btn-post-submit {
+  height: 10px !important;
+  width: 10px !important;
+}

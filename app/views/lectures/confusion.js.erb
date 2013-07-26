@@ -1,6 +1,6 @@
 <% publish_to "/confusions/new" do %>
 	$('.panic-button').css('background-color', 'red');
-	// $('.panic-button').delay(2000).css('background-color', 'green');
+	setTimeout(function (){$('.panic-button').css('background-color', 'green')}, 2000)
 <% end %>
 
 // PrivatePub.subscribe("/confusions/new", function(data, channel) {

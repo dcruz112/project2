@@ -110,7 +110,7 @@
 }
 
 .dropdown-menu a {
-	margin-left: 8px;
+	/*margin-left: 8px;*/
 }
 
 .navbar-inner {
@@ -140,3 +140,27 @@ a:active {
 li {
 	font-size: 18px;
 	padding: 15px;
+}
+
+.user-stats {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	display: block;
+	font-size: 38.5px;
+	/*-webkit-margin-before: 0.67em;
+	-webkit-margin-after: 0.67em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;*/
+	font-weight: bold;
+	line-height:40px;
+}
+
+.row {
+	margin: 0 auto;
+}
+
+.btn-post-submit {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+  }

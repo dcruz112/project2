@@ -67,10 +67,10 @@ class LecturesController < ApplicationController
   end
 
   def confusion
-    bound = 5
+    # bound = 5
     latest_confusion = Confusion.where(user: current_user, lecture: @lecture).last
     if @lecture.current
-      if latest_confusion.nil? || (Time.now - latest_confusion.created_at) >= (bound * 60)
+      # if latest_confusion.nil? || (Time.now - latest_confusion.created_at) >= (bound * 60)
         @confusion = Confusion.new
         @confusion.user = current_user
         @confusion.lecture = @lecture
@@ -86,12 +86,12 @@ class LecturesController < ApplicationController
             format.json { render json: @confusion.errors, status: :unprocessable_entity }
           end
         end
-      else
-        redirect_to :back
+      # else
+      #   redirect_to :back
       end
-    else
-      redirect_to :back
-    end
+    # else
+    #   redirect_to :back
+    # end
   end
 
   def end
