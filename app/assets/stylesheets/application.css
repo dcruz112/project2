@@ -12,9 +12,38 @@
  *= require_tree .
  */
 
-.user_info  {
-	float: right;
-	display: block;
+.body {
+	padding: 50px;
+}
+
+.all-content {
+	position: relative;
+	margin: 50px;
+	margin-top: 80px;
+}
+
+.logo {
+	float:left;
+	margin-right:20px;
+	font-size:1.7em;
+	color:black;
+	padding-top:9px;
+	letter-spacing: -1px;
+	font-weight:bold;
+	line-height:1;
+}
+
+.logo:hover {
+	color:orange;
+	text-decoration:none;
+}
+
+.btn {
+	margin-left:15px;
+}
+
+.btn:hover {
+	color:orange;
 }
 
 .icon img {
@@ -27,18 +56,35 @@
 	height: 25px;
 }
 
-.form {
-	position: relative;
-	bottom: 0;
-	margin: 10px;
 
+.lecture-index {
+	text-align:center;
+}
+
+.user_info  {
+	float: right;
+	display: block;
+}
+
+.icon img {
+	width: 22px;
+	height: 22px;
+}
+
+
+.form {
+	margin-left: 20px;
+	width: 85%;
+	height:60px;
+	max-height: 15%;
 	.right-col {
 		float: left;
 	}
 }
 
 .form-content {
-	width: 75%;
+	margin: 5px;
+	width: 85%;
 	height:60px;
 	border-radius: 7px;
 	float: left;
@@ -47,30 +93,28 @@
 }
 
 .all-posts {
-  width: 75%;
-  height: 425px;
+  margin-left: 20px;
+  width: 85%;
+  height: 400px;
+  max-height: 80%;
   border-radius: 7px;
   overflow-y: auto;
-  margin-bottom: 15px;
-  margin: 10px;
   /*border: 1px solid black;*/
   background-image: url('notepad.png');
 }
 
-.lecture-name {
-	margin-left: 10px;
-	font-size: 30px;
-	font-family: Georgia;
+.all-comments {
+	border-radius: 7px;
+	background-image: url('notepad.png');
+	width: 85%;
 }
 
-ul {
-	padding: 0;
+.dropdown-menu a {
+	margin-left: 8px;
 }
 
-.button {
-	position: absolute;
-	top: 0;
-	right: 0;
+.navbar-inner {
+	background-color: blue;
 }
 
 a:link {
@@ -83,7 +127,6 @@ a:visited {
 	text-decoration:none;
 }
 
-
 a:hover {
 	color:black;
 	text-decoration:underline;
@@ -93,3 +136,7 @@ a:active {
 	color:black;
 	text-decoration:none;
 }
+
+li {
+	font-size: 18px;
+	padding: 15px;

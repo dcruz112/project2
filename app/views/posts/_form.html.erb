@@ -4,7 +4,8 @@
   <% if current_user.student %>
   	<%= f.input :name, as: :boolean, label: "Use Name" %>
   <% end %>
-  <%= f.input :lecture_id, as: :hidden, input_html: {value: lecture_id} %>
-  <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'icon', remote: true %>
+	<% @lecture ||= Post.find(@post.lecture_id) %>
+  <%= f.input :lecture_id, as: :hidden, input_html: {value: @lecture.id} %>
+  <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'btn', remote: true %>
 
 <% end %>

@@ -31,7 +31,8 @@
 	</div>
 	<div class="footer">
 			<% if current_user.id == post.user_id %>
-				<%= link_to image_tag("edit.png", :title => "Edit"), edit_post_path(post), class: "icon" %>
+				<%= link_to image_tag("edit.png", :title => "Edit"), edit_post_path(post),
+				locals: {lecture_id: @lecture.id}, class: "icon" %>
 				<%= link_to image_tag("delete.png", :title => "Delete"), post, method: :delete,
 				 data: { confirm: 'Are you sure?' }, class: "icon" %>
 			<% elsif !current_user.student %>

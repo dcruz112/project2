@@ -1,15 +1,9 @@
-<div class="lecture-name">
-	<%= @lecture.created_at %>
-</div>
-
 <div class="all-posts" style="<%= "height = 650px;" unless @lecture.current %>">
-	<ul>
 		<% @posts = Post.where(lecture: @lecture) %>
 		<% @posts.reverse.each do |p| %>
 			<% @current_flags = current_user.flags.where(post_id: p) %>
 			<%= render p unless @current_flags.present? %>
 		<% end %>
-	</ul>
 </div>
 
 <% if @lecture.current %>
@@ -19,15 +13,18 @@
 <% else %>
 	Lecture has ended. No peanut-throwing.
 <% end %>
-
-<div class="button">
-	<% if !Lecture.last.nil? && Lecture.last.current %>
-		<%= link_to image_tag("button.png", :title => "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put, remote: true %>
+<br>
+<br>
+<br>
+<% if @lecture.current %>
+	<% if current_user.student %>
+		<%= link_to image_tag("button.png", size: "200x200" ,title: "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put, remote: true %>
 	<% else %>
-		"No lecture started"
+		<div class="panic-button"></div>
 	<% end %>
-</div>
-
+<% end %>
 
 <%= subscribe_to "/posts/new" %>
-<%= subscribe_to "/confusions/new" %>
+<% if !current_user.student %>
+	<%= subscribe_to "/confusions/new" %>
+<% end %>

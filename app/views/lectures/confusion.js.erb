@@ -1,4 +1,8 @@
 <% publish_to "/confusions/new" do %>
-	// $('.all-posts').css('background', '#ccc');
-	alert('lol');
+	$('.panic-button').css('background-color', 'red');
+	// $('.panic-button').delay(2000).css('background-color', 'green');
 <% end %>
+
+// PrivatePub.subscribe("/confusions/new", function(data, channel) {
+//   $("#panic-button").append(data.confusion_level);
+// });

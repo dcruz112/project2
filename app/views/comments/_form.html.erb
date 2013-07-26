@@ -2,6 +2,7 @@
 
     <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: '' %>
     <%= f.check_box :name, {}, "true", "false" %> Show name<br>
+    <% @post ||= Post.find(@comment.post_id) %>
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= image_submit_tag 'comment.png', alt: 'save', class: 'icon' %>
 

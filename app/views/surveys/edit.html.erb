@@ -1,5 +1,8 @@
-<%- model_class = Survey -%>
-<div class="page-header">
-  <h2><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h2>
-</div>
-<%= render :partial => 'form' %>
+<h1>Edit Survey</h1>
+
+<%= render 'form' %>
+
+<p>
+  <%= link_to "Show", @survey %> |
+  <%= link_to "View All", surveys_path %>
+</p>

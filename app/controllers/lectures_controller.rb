@@ -75,6 +75,7 @@ class LecturesController < ApplicationController
         @confusion.user = current_user
         @confusion.lecture = @lecture
 
+        # PrivatePub.publish_to "/confusions/new", confusion_level: "|"
         respond_to do |format|
           if @confusion.save
             format.html { redirect_to :back}

@@ -4,7 +4,7 @@
   <%= f.input :email %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
-  <%= f.input :class_year %>
+  <%= f.input :class_year, label: "Class Year", collection: ['2014', '2015', '2016', '2017'] %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
