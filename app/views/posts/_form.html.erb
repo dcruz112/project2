@@ -1,11 +1,10 @@
 <%= simple_form_for @post, remote: true do |f| %>
-
-  <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: ''  %>
   <% if current_user.student %>
-  	<%= f.input :name, as: :boolean, label: "Use Name" %>
+      <%= f.input :name, as: :boolean, label: "Use Name" %>
   <% end %>
+  <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: ''  %>
 	<% @lecture ||= Post.find(@post.lecture_id) %>
   <%= f.input :lecture_id, as: :hidden, input_html: {value: @lecture.id} %>
-  <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'btn', remote: true %>
+  <%= image_submit_tag 'question.png', :title => "Ask!", alt: 'save', class: 'btn', remote: true %></br>
 
 <% end %>
