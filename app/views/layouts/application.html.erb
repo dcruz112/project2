@@ -21,7 +21,10 @@
               <li class="dropdown">
                 <a href="/lectures" class="dropdown-toggle" data-toggle="dropdown">Lectures
                 <b class="caret"></b></a>
-                  <ul class="dropdown-menu"><a tabindex="-1" href="/lectures">Current Lecture</a></ul>
+                  <ul class="dropdown-menu">
+                    <li><a href="/lectures"><%= link_to Lecture.where(current:true).first.name + " (current)", lecture_path(Lecture.where(current: true).first) %></a></li>
+                    <li><a href="/lectures">Past Lectures</a></li>
+                  </ul>
               </li>
               <li><%= link_to "You", user_path(current_user) %></li>
               <li><%= link_to "Logout", log_out_path %></li>
