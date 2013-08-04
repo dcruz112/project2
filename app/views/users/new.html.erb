@@ -1,4 +1,21 @@
-<h1>Who are you?</h1>
+<div class = "navbar navbar-fixed-top">
+    <div class = "navbar-inner" >
+      <div class = "container" >
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class = "logo" ><%= image_tag("pnut.png", size: "55x55") %> pNut</a>
+</div>
+</div>
 
+
+<div class= "user-loadpage">
+
+
+<h1>Who are you?</h1>
+<br>
 <%= link_to "Student", users_path(user: { student: true} ), method: :post %>
 <%= link_to "Teacher", users_path(user: { student: false} ), method: :post %>
+</div>

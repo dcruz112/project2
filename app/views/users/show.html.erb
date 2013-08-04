@@ -37,8 +37,9 @@
 
     <div class="span6">
       <div class = "user-stats">User Stats</div>
-      Posts (<%= @user.posts.count %>)
-      Confusion (<%= @user.confusions.count %>)
-      Votes (<%= @user.votes.count %>)
+        <ul class = "statlist">
+          <dt> Posts: <%= @user.posts.count %> </dt>
+          <dt> Confusion: <%= @user.confusions.count %> <dt>
+          <dt> Votes: <%= @user.votes.count %> </dt>
     </div>
 </div>

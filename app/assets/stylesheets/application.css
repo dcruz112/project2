@@ -109,8 +109,9 @@
 	width: 85%;
 }
 
-.dropdown-menu a {
-	/*margin-left: 8px;*/
+.dropdown-menu li {
+	font-size: 14px;
+	margin-left: 5px;
 }
 
 .navbar-inner {
@@ -143,8 +144,7 @@ li {
 }
 
 .user-stats {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	margin-top: 20px;
 	display: block;
 	font-size: 38.5px;
 	/*-webkit-margin-before: 0.67em;
@@ -162,5 +162,28 @@ li {
 .btn-post-submit {
     height: 40px;
     width: 40px;
-    margin-top: 10px;
-  }
+	margin-top:10px;
+}
+
+.statlist {
+	margin-top:37px;
+}
+
+.keep-calm {
+	position: absolute !important;
+	top: 10px;
+	right: 10px;
+}
+
+.no-peanuts {
+	font-family: georgia;
+	font-size: 20px;
+	margin-left: 27px;
+	margin-top: 20px;
+}
+
+.user-loadpage {
+	font: georgia;
+	margin: 50px;
+	font-size: 30px;
+}

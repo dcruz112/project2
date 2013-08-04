@@ -1,7 +1,9 @@
 <%= simple_form_for @comment, remote: true do |f| %>
 
     <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: '' %>
-    <%= f.check_box :name, {}, "true", "false" %> Show name<br>
+    <% if current_user.student %>
+    	<%= f.check_box :name, {}, "true", "false" %> Show name<br>
+    <% end %>
     <% post_id ||= @comment.post_id %>
     <%= f.hidden_field :post_id, value: post_id %>
     <%= image_submit_tag 'comment.png', alt: 'save', class: 'btn btn-post-submit' %>

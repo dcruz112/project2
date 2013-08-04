@@ -1,3 +1,13 @@
+<% if @lecture.current %>
+	<% if current_user.student %>
+	<div class="keep-calm">
+		<%= link_to image_tag("button.png", size: "150x150" ,title: "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put, remote: true, class: "button" %>
+	</div>
+	<% else %>
+		<div class="panic-button"></div>
+	<% end %>
+<% end %>
+
 <div class="all-posts" style="<%= "height = 650px;" unless @lecture.current %>">
 		<% @posts = Post.where(lecture: @lecture) %>
 		<% @posts.reverse.each do |p| %>
@@ -11,18 +21,12 @@
 		<%= render partial: 'posts/form', locals: {lecture_id: @lecture.id} %>
 	</div>
 <% else %>
-	Lecture has ended. No peanut-throwing.
+	<div class="no-peanuts" >
+		<%= "Lecture has ended. No peanut-throwing." %>
+	</div>
 <% end %>
-<br>
-<br>
-<br>
-<% if @lecture.current %>
-	<% if current_user.student %>
-		<%= link_to image_tag("button.png", size: "200x200" ,title: "Keep Calm and Carry On"), confusion_lecture_path(Lecture.last), method: :put, remote: true %>
-	<% else %>
-		<div class="panic-button"></div>
-	<% end %>
-<% end %>
+
+
 
 <%= subscribe_to "/posts/new" %>
 

@@ -7,7 +7,7 @@
 	<% end %>
 	<%= link_to image_tag("back.png", :title => "Back"), :back, class: "icon" %>
 	<em class="byline"><%= @post.name ? @post.user.full_name : "Anonymous" %></em>
-	<%= render '/comments/form' %>
+	<%= render partial: 'comments/form', locals: {post_id: @post.id} %>
 	<br>
 	<div class="all-comments">
 		<% Comment.where(post_id: @post.id).reverse.each do |c| %>

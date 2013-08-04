@@ -29,6 +29,12 @@
                     <%# end %>
                     <li><a href="/lectures">Past Lectures</a></li>
                   </ul> -->
+
+                  <ul class="dropdown-menu">
+                    <li><%= "Current Lecture" %></a></li>
+                    <li><%= "Past Lectures" %></a></li>
+                  </ul>
+
               </li>
               <li><%= link_to "You", user_path(current_user) %></li>
               <li><%= link_to "Logout", log_out_path %></li>

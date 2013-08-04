@@ -2,7 +2,7 @@
 
   <%= f.input :content, input_html: { maxlength: 200, class: 'form-content' }, label: '' %>
   <% if current_user.student %>
-  	<%= f.input :name, as: :boolean, label: "Use Name" %>
+      <%= f.input :name, as: :boolean, label: "Use Name" %>
   <% end %>
   <% lecture_id ||= @post.lecture_id %>
   <%= f.input :lecture_id, as: :hidden, input_html: { value: lecture_id } %>
